@@ -7,11 +7,6 @@ goog.require('lime.Scene');
 goog.require('lime.Layer');
 goog.require('lime.Circle');
 goog.require('lime.Label');
-goog.require('lime.animation.Spawn');
-goog.require('lime.animation.FadeTo');
-goog.require('lime.animation.ScaleTo');
-goog.require('lime.animation.MoveTo');
-
 
 // entrypoint
 gamejambeta.start = function(){
@@ -29,7 +24,7 @@ gamejambeta.start = function(){
     var director = new lime.Director(document.body,gameObj.width,gameObj.height),
         scene = new lime.Scene(),
         //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
-        //colony = new Colony(gameObj)
+        colony = new Colony,
         userInterface = createUserInterface(gameObj);
 
     scene.appendChild(userInterface);
@@ -40,6 +35,15 @@ gamejambeta.start = function(){
         //gamejambeta.NaturalDisaster.scheduleShit(dt);
     },this);
 
+    goog.events.listen(userInterface.getChildAt(1),['mousedown','touchstart'],function(e){
+    userInterface.getChildAt(1).setFill('#00c');
+
+    colony.resourceBuilding.upgrade();
+
+    e.swallow(['mouseup','touchend','touchcancel'],function(){
+        userInterface.getChildAt(1).setFill('#0c0');
+    })
+});
 
     // set current scene active
     director.replaceScene(scene);
