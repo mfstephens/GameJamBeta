@@ -30,9 +30,11 @@ gamejambeta.start = function(){
         scene = new lime.Scene(),
         //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
         colony = new Colony,
-        userInterface = createUserInterface(gameObj);
+        userInterface = createUserInterface(gameObj),
+        map = createMap(gameObj);
 
     scene.appendChild(userInterface);
+    scene.appendChild(map);
 
     director.makeMobileWebAppCapable();
 
@@ -40,18 +42,85 @@ gamejambeta.start = function(){
         //gamejambeta.NaturalDisaster.scheduleShit(dt);
     },this);
 
-    goog.events.listen(userInterface.getChildAt(1),['mousedown','touchstart'],function(e){
+    goog.events.listen(userInterface.getChildAt(1), ['mousedown','touchstart'], function(e) {
         userInterface.getChildAt(1).setFill('#00c');
 
         if(playerObj.resources >= colony.resourceBuilding.getNextUpgradeCost()) {
             playerObj.resources -= colony.resourceBuilding.getNextUpgradeCost();
             colony.resourceBuilding.upgrade();
+            map.getChildAt(1).setFill('img/resourceBuilding.png');
         }
 
-        e.swallow(['mouseup','touchend','touchcancel'],function(){
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
             userInterface.getChildAt(1).setFill('#0c0');
-        })
+        });
     });
+
+    goog.events.listen(userInterface.getChildAt(2), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(2).setFill('#00c');
+
+        if(playerObj.resources >= colony.healthBuffBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.healthBuffBuilding.getNextUpgradeCost();
+            colony.healthBuffBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
+            userInterface.getChildAt(2).setFill('#0c0');
+        });
+    });
+
+    goog.events.listen(userInterface.getChildAt(3), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(3).setFill('#00c');
+
+        if(playerObj.resources >= colony.disasterPredictionBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.disasterPredictionBuilding.getNextUpgradeCost();
+            colony.disasterPredictionBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
+            userInterface.getChildAt(3).setFill('#0c0');
+        });
+    });
+
+    goog.events.listen(userInterface.getChildAt(4), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(4).setFill('#00c');
+
+        if(playerObj.resources >= colony.preventAsteroidBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.preventAsteroidBuilding.getNextUpgradeCost();
+            colony.preventAsteroidBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
+            userInterface.getChildAt(4).setFill('#0c0');
+        });
+    });
+
+    goog.events.listen(userInterface.getChildAt(5), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(5).setFill('#00c');
+
+        if(playerObj.resources >= colony.preventAlienBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.preventAlienBuilding.getNextUpgradeCost();
+            colony.preventAlienBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
+            userInterface.getChildAt(5).setFill('#0c0');
+        });
+    });
+
+    goog.events.listen(userInterface.getChildAt(6), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(6).setFill('#00c');
+
+        if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+            colony.preventStormBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'], function() {
+            userInterface.getChildAt(6).setFill('#0c0');
+        });
+    });
+
 
     // set current scene active
     director.replaceScene(scene);

@@ -196,7 +196,7 @@ function HealthBuffBuilding() {
 	};
 }
 
-function PreventShitFallingBuilding() {
+function PreventDamageBuilding() {
 	var currentLevel = 0;
 	var upgradeCostIndex = [15, 10, 13, 20, -1];
 	var nextUpgradeCost = 15;
