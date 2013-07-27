@@ -21,6 +21,11 @@ gamejambeta.start = function(){
         userInterfaceLayer_h: 160
     }
 
+    var playerObj = {
+        resources: 100,
+        health: 100
+    }
+
     var director = new lime.Director(document.body,gameObj.width,gameObj.height),
         scene = new lime.Scene(),
         //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
@@ -36,14 +41,19 @@ gamejambeta.start = function(){
     },this);
 
     goog.events.listen(userInterface.getChildAt(1),['mousedown','touchstart'],function(e){
-    userInterface.getChildAt(1).setFill('#00c');
+        userInterface.getChildAt(1).setFill('#00c');
 
-    colony.resourceBuilding.upgrade();
 
-    e.swallow(['mouseup','touchend','touchcancel'],function(){
-        userInterface.getChildAt(1).setFill('#0c0');
-    })
-});
+        if(playerObj.resources >= colony.resourceBuilding.getNextUpgradeCost &&
+            colony.resourceBuilding.getCurrentLevel != 5){
+            playerObj.resources -= colony.resourceBuilding.getNextUpgradeCost;
+            colony.resourceBuilding.upgrade();
+        }
+
+        e.swallow(['mouseup','touchend','touchcancel'],function(){
+            userInterface.getChildAt(1).setFill('#0c0');
+        })
+    });
 
     // set current scene active
     director.replaceScene(scene);
