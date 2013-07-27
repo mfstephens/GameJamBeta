@@ -1,5 +1,7 @@
+//set main namespace
 goog.provide('gamejambeta');
 
+//get requirements
 goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('lime.Layer');
@@ -9,6 +11,9 @@ goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
+goog.require('gamejambeta.NaturalDisasterQueue');
+goog.require('gamejambeta.Colony');
+goog.require('gamejambeta.UserInterface');
 
 
 // entrypoint
@@ -24,23 +29,23 @@ gamejambeta.start = function(){
         userInterfaceLayer_h: 160
     }
 
-	var director = new lime.Director(document.body,gameObj.width,gameObj.height),
-	    scene = new lime.Scene(),
-        //naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(gameObj),
-        //colony = new gamejambeta.Colony(gameObj)
-        userInterface = createUserInterface(gameObj);
+    var director = new lime.Director(document.body,gameObj.width,gameObj.height),
+        scene = new lime.Scene(),
+        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(gameObj),
+        colony = new gamejambeta.Colony(gameObj)
+        userInterface = new gamejambeta.UserInterface(gameObj);
 
     scene.appendChild(userInterface);
 
-	director.makeMobileWebAppCapable();
+    director.makeMobileWebAppCapable();
 
     lime.scheduleManager.schedule(function(dt) {
         //gamejambeta.NaturalDisaster.scheduleShit(dt);
     },this);
 
 
-	// set current scene active
-	director.replaceScene(scene);
+    // set current scene active
+    director.replaceScene(scene);
 
 }
 
@@ -52,3 +57,4 @@ gamejambeta.start = function(){
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('gamejambeta.start', gamejambeta.start);
+
