@@ -12,6 +12,8 @@ function ResourceBuilding() {
 	*								     *
 	*************************************/
 
+	// Use this class as a psuedo-template for rest of building classes. Refer here for documentation
+
 	// currentLevel corresponds to the state of a building:
 	// 0: Dead (initial)
 	// 1: Level 1
@@ -57,7 +59,7 @@ function ResourceBuilding() {
 
 	this.getNextDowngradePayout = function() {
 		return downgradePayoutIndex[currentLevel];
-	}
+	};
 
 	/********************
 	*		            *
@@ -89,5 +91,113 @@ function ResourceBuilding() {
 
 	this.getResourcePayout = function() {
 		return staticResourcePayoutPerInterval;
+	};
+}
+
+function DisasterPredictionBuilding = function() {
+	var currentLevel = 0;
+	var upgradeCostIndex = [15, 10, 13, 20, -1];
+	var nextUpgradeCost = 15;
+	var downgradePayoutIndex = [-1, 0, 5, 6, 10];
+
+	// private
+
+	var upgradeLevelAndCost = function() {
+		currentLevel++;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	var downgradeLevelAndCost = function() {
+		currentLevel--;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	// public
+
+	this.getCurrentLevel = function() {
+		return currentLevel;
+	};
+
+	this.getNextUpgradeCost = function() {
+		return nextUpgradeCost;
+	};
+
+	this.getNextDowngradePayout = function() {
+		return downgradePayoutIndex[currentLevel];
+	};
+
+	// Unique
+
+	var visibleItemsInDisasterQueue = 0;
+
+	this.upgrade = function() {
+		if(currentLevel < 4) {
+			upgradeLevelAndCost();
+			visibleItemsInDisasterQueue++;
+		}
+	};
+
+	this.downgrade = function() {
+		if(currentLevel > 0) {
+			downgradeLevelAndCost();
+			visibleItemsInDisasterQueue--;
+		}
+	};
+
+	this.getTotalVisibleItemsInDisasterQueue = function() {
+		return visibleItemsInDisasterQueue;
+	};
+}
+
+function HealthBuffBuilding = function() {
+	var currentLevel = 0;
+	var upgradeCostIndex = [15, 10, 13, 20, -1];
+	var nextUpgradeCost = 15;
+	var downgradePayoutIndex = [-1, 0, 5, 6, 10];
+
+	// private
+
+	var upgradeLevelAndCost = function() {
+		currentLevel++;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	var downgradeLevelAndCost = function() {
+		currentLevel--;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	// public
+
+	var staticHealthPayoutPerInterval = 0;
+
+	this.upgrade = function() {
+		if(currentLevel < 4) {
+			upgradeLevelAndCost();
+			staticHealthPayoutPerInterval++;
+		}
+	};
+
+	this.downgrade = function() {
+		if(currentLevel > 0) {
+			downgradeLevelAndCost();
+			staticHealthPayoutPerInterval--;
+		}
+	};
+
+	this.getCurrentLevel = function() {
+		return currentLevel;
+	};
+
+	this.getNextUpgradeCost = function() {
+		return nextUpgradeCost;
+	};
+
+	this.getNextDowngradePayout = function() {
+		return downgradePayoutIndex[currentLevel];
+	};
+
+	this.getHealthPayout = function() {
+		return staticHealthPayoutPerInterval;
 	};
 }
