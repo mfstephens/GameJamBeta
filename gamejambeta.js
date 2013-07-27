@@ -17,57 +17,25 @@ goog.require('lime.animation.MoveTo');
 // entrypoint
 gamejambeta.start = function(){
 
+    var gameObj = {
+        tile_size: 64,
+        num_tiles_x: 20,
+        num_tiles_y: 16,
+        width: num_tiles_x*tile_size,   //1280
+        height: num_tiles_y*tile_size,  //1024
+        userInterfaceLayer_w: tile_size*5, 
+        userInterfaceLayer_h: tile_size*6
+    }
+
 	var director = new lime.Director(document.body,1024,768),
 	    scene = new lime.Scene(),
-
-	    target = new lime.Layer().setPosition(512,384),
-        circle = new lime.Circle().setSize(150,150).setFill(255,150,0),
-        lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('TOUCH ME!'),
-        title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!')
-            .setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1),
-        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(),
-//        naturalDisasterQueue.name[]
-        colony = new gamejambeta.colony();
-
-
-
-    //add circle and label to target object
-    target.appendChild(circle);
-    target.appendChild(lbl);
-
-    //add target and title to the scene
-    scene.appendChild(target);
-    scene.appendChild(title);
+        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(gameObj),
+        colony = new gamejambeta.colony(gameObj)
+        userInterface = new gamejambeta.UserInterface(gameObj);
 
 	director.makeMobileWebAppCapable();
 
     //add some interaction
-    goog.events.listen(target,['mousedown','touchstart'],function(e){
-
-        //animate
-        target.runAction(new lime.animation.Spawn(
-            new lime.animation.FadeTo(.5).setDuration(.2),
-            new lime.animation.ScaleTo(1.5).setDuration(.8)
-        ));
-
-        title.runAction(new lime.animation.FadeTo(1));
-
-        //let target follow the mouse/finger
-        e.startDrag();
-
-        //listen for end event
-        e.swallow(['mouseup','touchend'],function(){
-            target.runAction(new lime.animation.Spawn(
-                new lime.animation.FadeTo(1),
-                new lime.animation.ScaleTo(1),
-                new lime.animation.MoveTo(512,384)
-            ));
-
-            title.runAction(new lime.animation.FadeTo(0));
-        });
-
-
-    });
 
     lime.scheduleManager.schedule(function(dt) {
         gamejambeta.NaturalDisaster.scheduleShit(dt);
