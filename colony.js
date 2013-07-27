@@ -1,2 +1,4 @@
-Colony = function() {
+
+function Colony() {
+	this.resourceBuilding = new ResourceBuilding;
 }

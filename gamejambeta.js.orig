@@ -1,0 +1,94 @@
+//set main namespace
+goog.provide('gamejambeta');
+
+//get requirements
+goog.require('lime.Director');
+goog.require('lime.Scene');
+goog.require('lime.Layer');
+goog.require('lime.Circle');
+goog.require('lime.Label');
+goog.require('lime.animation.Spawn');
+goog.require('lime.animation.FadeTo');
+goog.require('lime.animation.ScaleTo');
+goog.require('lime.animation.MoveTo');
+
+
+// entrypoint
+gamejambeta.start = function(){
+
+<<<<<<< HEAD
+    var gameObj = {
+        tile_size: 16,
+        num_tiles_x: 80,
+        num_tiles_y: 64,
+        width: 1280,
+        height: 1024,
+        userInterfaceLayer_w: 1280, 
+        userInterfaceLayer_h: 160
+    }
+=======
+	var director = new lime.Director(document.body,1024,768),
+	    scene = new lime.Scene(),
+
+	    target = new lime.Layer().setPosition(512,384),
+        circle = new lime.Circle().setSize(150,150).setFill(255,150,0),
+        lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('TOUCH ME!'),
+        title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!')
+            .setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1),
+        //naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(),
+        //naturalDisasterQueue.name[]
+        colony = new Colony;
+
+    console.log("resource payout: " + colony.resourceBuilding.getResourcePayout());
+    console.log("downgrade payout: " + colony.resourceBuilding.getNextDowngradePayout());
+    console.log("upgrade cost: " + colony.resourceBuilding.getNextUpgradeCost());
+    console.log("current level: " + colony.resourceBuilding.getCurrentLevel());
+
+    //add circle and label to target object
+    target.appendChild(circle);
+    target.appendChild(lbl);
+
+    //add target and title to the scene
+    scene.appendChild(target);
+    scene.appendChild(title);
+
+	director.makeMobileWebAppCapable();
+
+    //add some interaction
+    goog.events.listen(target,['mousedown','touchstart'],function(e){
+>>>>>>> PrepareBasicColonyClass
+
+    var director = new lime.Director(document.body,gameObj.width,gameObj.height),
+        scene = new lime.Scene(),
+        //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
+        //colony = new Colony(gameObj)
+        userInterface = createUserInterface(gameObj);
+
+    scene.appendChild(userInterface);
+
+    director.makeMobileWebAppCapable();
+
+    lime.scheduleManager.schedule(function(dt) {
+<<<<<<< HEAD
+        //gamejambeta.NaturalDisaster.scheduleShit(dt);
+=======
+        // gamejambeta.NaturalDisaster.scheduleShit(dt);
+
+>>>>>>> PrepareBasicColonyClass
+    },this);
+
+
+    // set current scene active
+    director.replaceScene(scene);
+
+}
+
+
+/* Case 1: Falling Shit
+ * Case 2: Aliens
+ * Case 3: Electric Storm
+ */
+
+//this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
+goog.exportSymbol('gamejambeta.start', gamejambeta.start);
+
