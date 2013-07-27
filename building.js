@@ -1,9 +1,3 @@
-// goog.provide('gamejambeta.Building');
-
-// gamejambeta.BuildingManager = function() {
-
-// }
-
 function ResourceBuilding() {
 
 	/*************************************
@@ -199,5 +193,58 @@ function HealthBuffBuilding = function() {
 
 	this.getHealthPayout = function() {
 		return staticHealthPayoutPerInterval;
+	};
+}
+
+function PreventShitFallingBuilding() {
+	var currentLevel = 0;
+	var upgradeCostIndex = [15, 10, 13, 20, -1];
+	var nextUpgradeCost = 15;
+	var downgradePayoutIndex = [-1, 0, 5, 6, 10];
+
+	// private
+
+	var upgradeLevelAndCost = function() {
+		currentLevel++;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	var downgradeLevelAndCost = function() {
+		currentLevel--;
+		nextUpgradeCost = upgradeCostIndex[currentLevel];
+	};
+
+	// public
+
+	var damageReductionFactor = 6;
+
+	this.upgrade = function() {
+		if(currentLevel < 4) {
+			upgradeLevelAndCost();
+			damageReductionFactor--;
+		}
+	};
+
+	this.downgrade = function() {
+		if(currentLevel > 0) {
+			downgradeLevelAndCost();
+			damageReductionFactor++;
+		}
+	};
+
+	this.getCurrentLevel = function() {
+		return currentLevel;
+	};
+
+	this.getNextUpgradeCost = function() {
+		return nextUpgradeCost;
+	};
+
+	this.getNextDowngradePayout = function() {
+		return downgradePayoutIndex[currentLevel];
+	};
+
+	this.getDamageReductionFactor = function() {
+		return (1 / damageReductionFactor);
 	};
 }
