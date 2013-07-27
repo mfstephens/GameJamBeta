@@ -88,7 +88,7 @@ function ResourceBuilding() {
 	};
 }
 
-function DisasterPredictionBuilding = function() {
+function DisasterPredictionBuilding() {
 	var currentLevel = 0;
 	var upgradeCostIndex = [15, 10, 13, 20, -1];
 	var nextUpgradeCost = 15;
@@ -143,7 +143,7 @@ function DisasterPredictionBuilding = function() {
 	};
 }
 
-function HealthBuffBuilding = function() {
+function HealthBuffBuilding() {
 	var currentLevel = 0;
 	var upgradeCostIndex = [15, 10, 13, 20, -1];
 	var nextUpgradeCost = 15;
