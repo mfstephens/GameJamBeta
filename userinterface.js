@@ -1,9 +1,9 @@
 goog.require('lime.Layer');
 
-UserInterface = function(gameObj) {
-	goog.base(this);
-	this.setAnchorPoint(0,0);
-	this.setSize(gameObj.tile_size*gameObj.userInterfaceLayer_w,
+function createUserInterface(gameObj) {
+	var userInterface = new lime.Layer();
+	userInterface.setAnchorPoint(0,0);
+	userInterface.setSize(gameObj.tile_size*gameObj.userInterfaceLayer_w,
 		gameObj.tile_size*gameObj.userInterfaceLayer_h);
 
 	var uiBackground = new lime.Sprite()
@@ -14,5 +14,7 @@ UserInterface = function(gameObj) {
         .setPosition(gameObj.tile_size*0,
 			gameObj.tile_size*54);
 
-	this.appendChild(uiBackground);
+	userInterface.appendChild(uiBackground);
+
+	return userInterface;
 }

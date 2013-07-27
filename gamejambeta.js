@@ -1,7 +1,5 @@
-//set main namespace
 goog.provide('gamejambeta');
 
-//get requirements
 goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('lime.Layer');
@@ -11,9 +9,6 @@ goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
-goog.require('gamejambeta.NaturalDisasterQueue');
-goog.require('gamejambeta.Colony');
-goog.require('gamejambeta.UserInterface');
 
 
 // entrypoint
@@ -31,9 +26,9 @@ gamejambeta.start = function(){
 
 	var director = new lime.Director(document.body,gameObj.width,gameObj.height),
 	    scene = new lime.Scene(),
-        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(gameObj),
-        colony = new gamejambeta.Colony(gameObj)
-        userInterface = new gamejambeta.UserInterface(gameObj);
+        //naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(gameObj),
+        //colony = new gamejambeta.Colony(gameObj)
+        userInterface = createUserInterface(gameObj);
 
     scene.appendChild(userInterface);
 

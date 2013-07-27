@@ -8,7 +8,6 @@ NaturalDisasterQueue = function()
         this.queue = new Array(); 
         var disasterTimes = [1500,2000,2500];
         var currentType = 0;
-        return this;
 }
 
 
