@@ -24,7 +24,11 @@ gamejambeta.start = function(){
         circle = new lime.Circle().setSize(150,150).setFill(255,150,0),
         lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('TOUCH ME!'),
         title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!')
-            .setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1);
+            .setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1),
+        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(),
+//        naturalDisasterQueue.name[]
+        colony = new gamejambeta.colony();
+
 
 
     //add circle and label to target object
@@ -64,6 +68,12 @@ gamejambeta.start = function(){
 
 
     });
+
+    lime.scheduleManager.schedule(function(dt) {
+        gamejambeta.NaturalDisaster.scheduleShit(dt);
+
+    },this);
+
 
 	// set current scene active
 	director.replaceScene(scene);
