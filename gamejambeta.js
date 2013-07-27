@@ -43,10 +43,8 @@ gamejambeta.start = function(){
     goog.events.listen(userInterface.getChildAt(1),['mousedown','touchstart'],function(e){
         userInterface.getChildAt(1).setFill('#00c');
 
-
-        if(playerObj.resources >= colony.resourceBuilding.getNextUpgradeCost &&
-            colony.resourceBuilding.getCurrentLevel != 5){
-            playerObj.resources -= colony.resourceBuilding.getNextUpgradeCost;
+        if(playerObj.resources >= colony.resourceBuilding.getNextUpgradeCost()) {
+            playerObj.resources -= colony.resourceBuilding.getNextUpgradeCost();
             colony.resourceBuilding.upgrade();
         }
 
