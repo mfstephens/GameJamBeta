@@ -1,4 +1,4 @@
-goog.provide('gamejambeta.Colony');
 
-gamejambeta.Colony = function() {
+function Colony() {
+	this.resourceBuilding = new ResourceBuilding;
 }

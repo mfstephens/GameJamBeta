@@ -25,11 +25,14 @@ gamejambeta.start = function(){
         lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('TOUCH ME!'),
         title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!')
             .setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1),
-        naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(),
-//        naturalDisasterQueue.name[]
-        colony = new gamejambeta.colony();
+        //naturalDisasterQueue = new gamejambeta.NaturalDisasterQueue(),
+        //naturalDisasterQueue.name[]
+        colony = new Colony;
 
-
+    console.log("resource payout: " + colony.resourceBuilding.getResourcePayout());
+    console.log("downgrade payout: " + colony.resourceBuilding.getNextDowngradePayout());
+    console.log("upgrade cost: " + colony.resourceBuilding.getNextUpgradeCost());
+    console.log("current level: " + colony.resourceBuilding.getCurrentLevel());
 
     //add circle and label to target object
     target.appendChild(circle);
@@ -70,7 +73,7 @@ gamejambeta.start = function(){
     });
 
     lime.scheduleManager.schedule(function(dt) {
-        gamejambeta.NaturalDisaster.scheduleShit(dt);
+        // gamejambeta.NaturalDisaster.scheduleShit(dt);
 
     },this);
 
