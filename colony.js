@@ -1,4 +1,2 @@
-goog.provide('gamejambeta.Colony');
-
-gamejambeta.Colony = function() {
+Colony = function() {
 }
