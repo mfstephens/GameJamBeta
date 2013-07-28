@@ -12,17 +12,20 @@ function Colony() {
         health: 100
     }
 
-    // Will return true if update is possible
-	// False otherwise
+    // Mistake in the JavaScript language design requires
+    // the that = this workaround
+	var that = this;
 	var updateResourceBuilding = function(updateParams) {
 		if(updateParams.updateType === "upgrade") {
 			// Set building image
 			playerObj.resources -= resourceBuilding.getNextUpgradeCost();
 			updateParams.mapLayerObject.setFill("#666699");
+			// goog.events.removeAll();
 			lime.scheduleManager.callAfter(function(dt) {
 				resourceBuilding.upgrade();
 				console.log(resourceBuilding.getCurrentLevel());
 				updateParams.mapLayerObject.setFill('img/resourceBuilding.png');
+				addUiButtonEventListener(that, updateParams.mapLayerObject, updateParams.uiLayerObject)
 			}, this, 5000);
 		}
 		else if(updateParams.updateType === "downgrade") {
