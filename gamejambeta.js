@@ -37,30 +37,49 @@ gamejambeta.start = function(){
         //gamejambeta.NaturalDisaster.scheduleShit(dt);
     },this);
 
-    for(var i = 1; i <= 12; ++i) {
-        addUiButtonEventListener(colony, map.getChildAt(i), userInterface.getChildAt(i));
-    }
+    addUiButtonEventListener(colony, {
+        buildingType: "resource",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(0),
+        uiLayerObject: userInterface.getChildAt(1)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "alien",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(1),
+        uiLayerObject: userInterface.getChildAt(2)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "resource",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(0),
+        uiLayerObject: userInterface.getChildAt(7)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "alien",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(1),
+        uiLayerObject: userInterface.getChildAt(8)
+    });
     
     // set current scene active
     director.replaceScene(scene);
 
 }
 
-function addUiButtonEventListener(colony, mapLayerObject, uiLayerObject) {
-    goog.events.listen(uiLayerObject, ['mousedown','touchstart'], function(e) {
-        uiLayerObject.setFill('#00c');
+function addUiButtonEventListener(colony, uiButtonParams) {
+    goog.events.listen(uiButtonParams.uiLayerObject, ['mousedown','touchstart'], function(e) {
+        uiButtonParams.uiLayerObject.setFill('#00c');
 
-        if(colony.isPossibleUpgrade("resource")) {
-            colony.updateBuilding({
-                buildingType: "resource",
-                updateType: "upgrade",
-                mapLayerObject: mapLayerObject,
-                uiLayerObject: uiLayerObject
-            });
+        if(colony.isPossibleUpgrade(uiButtonParams.buildingType)) {
+            colony.updateBuilding(uiButtonParams);
         }
 
         e.swallow(['mouseup','touchend','touchcancel'], function() {
-            uiLayerObject.setFill('#0c0');
+            uiButtonParams.uiLayerObject.setFill('#0c0');
         });
     });
 }
