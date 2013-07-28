@@ -21,7 +21,7 @@ function Colony(gameObj) {
 		if(updateParams.updateType === "upgrade") {
 			// Set building image
 			playerObj.resources -= buildings[index].getNextUpgradeCost();
-			updateParams.mapLayerObject.setFill("#666699");
+			updateParams.mapLayerObject.setFill("img/buildingPreBuilt.png");
 
 			goog.events.removeAll(updateParams.uiLayerObject);
 			lime.scheduleManager.callAfter(function(dt) {
@@ -34,7 +34,7 @@ function Colony(gameObj) {
 		else if(updateParams.updateType === "downgrade") {
 			// Set building image
 			playerObj.resources += buildings[index].getNextDowngradePayout();
-			updateParams.mapLayerObject.setFill("#666699");
+			updateParams.mapLayerObject.setFill("img/buildingPreBuilt.png");
 
 			goog.events.removeAll(updateParams.uiLayerObject);
 			lime.scheduleManager.callAfter(function(dt) {
@@ -54,31 +54,32 @@ function Colony(gameObj) {
     			}
     			break;
             case "prediction":
-                if((playerObj.resource - buildings[1].getNextUpgradeCost()) >= 0
+                if((playerObj.resources - buildings[1].getNextUpgradeCost()) >= 0
                     && buildings[1].getCurrentLevel() < 4) {
                     return true;
                 }
                 break;
             case "health":
-                if((playerObj.resource - buildings[2].getNextUpgradeCost()) >= 0
+                if((playerObj.resources - buildings[2].getNextUpgradeCost()) >= 0
                     && buildings[2].getCurrentLevel() < 4) {
                     return true;
                 }
                 break;
     		case "alien":
-    			if((playerObj.resource - buildings[3].getNextUpgradeCost()) >= 0
+            console.log(playerObj.resources - buildings[3].getNextUpgradeCost());
+    			if((playerObj.resources - buildings[3].getNextUpgradeCost()) >= 0
     				&& buildings[3].getCurrentLevel() < 4) {
     				return true;
     			}
     			break;
     		case "asteroid":
-                if((playerObj.resource - buildings[4].getNextUpgradeCost()) >= 0
+                if((playerObj.resources - buildings[4].getNextUpgradeCost()) >= 0
                     && buildings[4].getCurrentLevel() < 4) {
                     return true;
                 }
                 break;
             case "storm":
-                if((playerObj.resource - buildings[5].getNextUpgradeCost()) >= 0
+                if((playerObj.resources - buildings[5].getNextUpgradeCost()) >= 0
                     && buildings[5].getCurrentLevel() < 4) {
                     return true;
                 }
@@ -132,6 +133,7 @@ function Colony(gameObj) {
     			applyBuildingUpdate(updateParams, 0, "img/resourceBuilding.png");
     			break;
             case "prediction":
+                applyBuildingUpdate(updateParams, 1, "img/buildingSweeper.png")
                 break;
             case "health":
                 applyBuildingUpdate(updateParams, 2, "img/buildingHealthBuff.png");
@@ -140,7 +142,7 @@ function Colony(gameObj) {
     			applyBuildingUpdate(updateParams, 3, "img/buildingAlienDefense.png");
     			break;
             case "asteroid":
-                applyBuildingUpdate(updateParams, 4, "img/buildingAlienDefense.png");
+                applyBuildingUpdate(updateParams, 4, "img/buildingAsteroidsDefense.png");
                 break;
     		case "storm":
                 applyBuildingUpdate(updateParams, 5, "img/buildingElectricStormDefense.png");

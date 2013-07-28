@@ -52,6 +52,34 @@ gamejambeta.start = function(){
     });
 
     addUiButtonEventListener(colony, {
+        buildingType: "prediction",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(2),
+        uiLayerObject: userInterface.getChildAt(3)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "health",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(3),
+        uiLayerObject: userInterface.getChildAt(4)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "asteroid",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(4),
+        uiLayerObject: userInterface.getChildAt(5)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "storm",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(5),
+        uiLayerObject: userInterface.getChildAt(6)
+    });
+
+    addUiButtonEventListener(colony, {
         buildingType: "resource",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(0),

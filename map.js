@@ -18,11 +18,17 @@ function createMap(gameObj) {
         .setAnchorPoint(0, 0)
         .setPosition(gameObj.tile_size * 3, gameObj.tile_size * 26);
 
+    var buildingSweeper = new lime.Sprite()
+        .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
+        .setFill("img/buildingPlacement.png")
+        .setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size * 30, gameObj.tile_size * 30);
+
     var buildingHealthBuff = new lime.Sprite()
         .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
         .setFill("img/buildingPlacement.png")
         .setAnchorPoint(0, 0)
-        .setPosition(gameObj.tile_size * 40, gameObj.tile_size * 15);
+        .setPosition(gameObj.tile_size * 50, gameObj.tile_size * 13);
 
     var buildingAsteroidDefense = new lime.Sprite()
         .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
@@ -34,11 +40,12 @@ function createMap(gameObj) {
         .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
         .setFill("img/buildingPlacement.png")
         .setAnchorPoint(0, 0)
-        .setPosition(gameObj.tile_size * 40, gameObj.tile_size * 25);
+        .setPosition(gameObj.tile_size * 50, gameObj.tile_size * 25);
 
 
 	map.appendChild(resourceBuilding);
 	map.appendChild(buildingAlienDefense);
+    map.appendChild(buildingSweeper);
     map.appendChild(buildingHealthBuff);
     map.appendChild(buildingAsteroidDefense);
     map.appendChild(buildingStormDefense);
