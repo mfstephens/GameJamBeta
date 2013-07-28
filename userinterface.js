@@ -7,8 +7,8 @@ function createUserInterface(gameObj) {
 		gameObj.tile_size*gameObj.userInterfaceLayer_h);
 
 	var uiBackground = new lime.Sprite()
-		.setSize(gameObj.tile_size*gameObj.userInterfaceLayer_w,
-			gameObj.tile_size*gameObj.userInterfaceLayer_h)
+		.setSize(gameObj.tile_size * gameObj.userInterfaceLayer_w,
+			gameObj.tile_size * gameObj.userInterfaceLayer_h)
         .setFill('img/uiBackground.png')
         .setAnchorPoint(0,0)
         .setPosition(gameObj.tile_size*0,
@@ -110,6 +110,20 @@ function createUserInterface(gameObj) {
         .setPosition(gameObj.tile_size*51,
 			gameObj.tile_size*60);
 
+    var uiHealthBar = new lime.Sprite()
+    	.setSize(gameObj.tile_size * 78,
+    		gameObj.tile_size * 4)
+    	.setFill("img/uiHealthBar.png")
+    	.setAnchorPoint(0, 0)
+    	.setPosition(gameObj.tile_size, 0);
+
+   	var uiHealth = new lime.Sprite()
+   		.setSize(gameObj.tile_size * 76,
+   			gameObj.tile_size * 2)
+   		.setFill("img/uiHealth.png")
+   		.setAnchorPoint(0, 0)
+   		.setPosition(gameObj.tile_size * 2, gameObj.tile_size);
+
 
 	userInterface.appendChild(uiBackground);
 	userInterface.appendChild(upgradeUiResourceBuildingButton);
@@ -124,6 +138,8 @@ function createUserInterface(gameObj) {
 	userInterface.appendChild(downgradeUiAsteroidBuildingButton);
 	userInterface.appendChild(downgradeUiAlienBuildingButton);
 	userInterface.appendChild(downgradeUiStormBuildingButton);
+	userInterface.appendChild(uiHealthBar);
+	userInterface.appendChild(uiHealth);
 		
 
 	return userInterface;
