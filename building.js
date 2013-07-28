@@ -70,17 +70,13 @@ function ResourceBuilding() {
 	var staticResourcePayoutPerInterval = 0;
 
 	this.upgrade = function() {
-		if(currentLevel < 4) {
-			upgradeLevelAndCost();
-			staticResourcePayoutPerInterval++;
-		}
+		upgradeLevelAndCost();
+		staticResourcePayoutPerInterval++;
 	};
 
 	this.downgrade = function() {
-		if(currentLevel > 0) {
-			staticResourcePayoutPerInterval--;
-			downgradeLevelAndCost();
-		}
+		staticResourcePayoutPerInterval--;
+		downgradeLevelAndCost();
 	};
 
 	this.getResourcePayout = function() {
@@ -125,17 +121,13 @@ function DisasterPredictionBuilding() {
 	var visibleItemsInDisasterQueue = 0;
 
 	this.upgrade = function() {
-		if(currentLevel < 4) {
-			upgradeLevelAndCost();
-			visibleItemsInDisasterQueue++;
-		}
+		upgradeLevelAndCost();
+		visibleItemsInDisasterQueue++;
 	};
 
 	this.downgrade = function() {
-		if(currentLevel > 0) {
-			downgradeLevelAndCost();
-			visibleItemsInDisasterQueue--;
-		}
+		downgradeLevelAndCost();
+		visibleItemsInDisasterQueue--;
 	};
 
 	this.getTotalVisibleItemsInDisasterQueue = function() {
@@ -166,17 +158,13 @@ function HealthBuffBuilding() {
 	var staticHealthPayoutPerInterval = 0;
 
 	this.upgrade = function() {
-		if(currentLevel < 4) {
-			upgradeLevelAndCost();
-			staticHealthPayoutPerInterval++;
-		}
+		upgradeLevelAndCost();
+		staticHealthPayoutPerInterval++;
 	};
 
 	this.downgrade = function() {
-		if(currentLevel > 0) {
-			downgradeLevelAndCost();
-			staticHealthPayoutPerInterval--;
-		}
+		downgradeLevelAndCost();
+		staticHealthPayoutPerInterval--;
 	};
 
 	this.getCurrentLevel = function() {
@@ -219,17 +207,13 @@ function PreventDamageBuilding() {
 	var damageReductionFactor = 6;
 
 	this.upgrade = function() {
-		if(currentLevel < 4) {
-			upgradeLevelAndCost();
-			damageReductionFactor--;
-		}
+		upgradeLevelAndCost();
+		damageReductionFactor--;
 	};
 
 	this.downgrade = function() {
-		if(currentLevel > 0) {
-			downgradeLevelAndCost();
-			damageReductionFactor++;
-		}
+		downgradeLevelAndCost();
+		damageReductionFactor++;
 	};
 
 	this.getCurrentLevel = function() {

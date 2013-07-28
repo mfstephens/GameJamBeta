@@ -21,11 +21,6 @@ gamejambeta.start = function(){
         userInterfaceLayer_h: 160
     }
 
-    var playerObj = {
-        resources: 100,
-        health: 100
-    }
-
     var director = new lime.Director(document.body,gameObj.width,gameObj.height),
         scene = new lime.Scene(),
         //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
@@ -45,10 +40,12 @@ gamejambeta.start = function(){
     goog.events.listen(userInterface.getChildAt(1), ['mousedown','touchstart'], function(e) {
         userInterface.getChildAt(1).setFill('#00c');
 
-        if(playerObj.resources >= colony.resourceBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.resourceBuilding.getNextUpgradeCost();
-            colony.resourceBuilding.upgrade();
-            map.getChildAt(1).setFill('img/resourceBuilding.png');
+        if(colony.isPossibleUpgrade("resource")) {
+            colony.updateBuilding({
+                buildingType: "resource",
+                updateType: "upgrade",
+                mapLayerObject: map.getChildAt(1)
+            });
         }
 
         e.swallow(['mouseup','touchend','touchcancel'], function() {
@@ -56,70 +53,151 @@ gamejambeta.start = function(){
         });
     });
 
-    goog.events.listen(userInterface.getChildAt(2), ['mousedown','touchstart'], function(e) {
-        userInterface.getChildAt(2).setFill('#00c');
+    // goog.events.listen(userInterface.getChildAt(2), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(2).setFill('#00c');
 
-        if(playerObj.resources >= colony.healthBuffBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.healthBuffBuilding.getNextUpgradeCost();
-            colony.healthBuffBuilding.upgrade();
+    //     if(playerObj.resources >= colony.healthBuffBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.healthBuffBuilding.getNextUpgradeCost();
+    //         colony.healthBuffBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(2).setFill('#0c0');
+    //     });
+    // });
+
+    // goog.events.listen(userInterface.getChildAt(3), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(3).setFill('#00c');
+
+    //     if(playerObj.resources >= colony.disasterPredictionBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.disasterPredictionBuilding.getNextUpgradeCost();
+    //         colony.disasterPredictionBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(3).setFill('#0c0');
+    //     });
+    // });
+
+    // goog.events.listen(userInterface.getChildAt(4), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(4).setFill('#00c');
+
+    //     if(playerObj.resources >= colony.preventAsteroidBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventAsteroidBuilding.getNextUpgradeCost();
+    //         colony.preventAsteroidBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(4).setFill('#0c0');
+    //     });
+    // });
+
+    // goog.events.listen(userInterface.getChildAt(5), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(5).setFill('#00c');
+
+    //     if(playerObj.resources >= colony.preventAlienBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventAlienBuilding.getNextUpgradeCost();
+    //         colony.preventAlienBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(5).setFill('#0c0');
+    //     });
+    // });
+
+    // goog.events.listen(userInterface.getChildAt(6), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(6).setFill('#00c');
+
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(6).setFill('#0c0');
+    //     });
+    // });
+
+    goog.events.listen(userInterface.getChildAt(7), ['mousedown','touchstart'], function(e) {
+        userInterface.getChildAt(7).setFill('#00c');
+
+        if(colony.isPossibleDowngrade("resource")) {
+            colony.updateBuilding({
+                buildingType: "resource",
+                updateType: "downgrade",
+                mapLayerObject: map.getChildAt(1)
+            });
         }
 
         e.swallow(['mouseup','touchend','touchcancel'], function() {
-            userInterface.getChildAt(2).setFill('#0c0');
+            userInterface.getChildAt(7).setFill('#0c0');
         });
     });
 
-    goog.events.listen(userInterface.getChildAt(3), ['mousedown','touchstart'], function(e) {
-        userInterface.getChildAt(3).setFill('#00c');
+    // goog.events.listen(userInterface.getChildAt(8), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(8).setFill('#00c');
 
-        if(playerObj.resources >= colony.disasterPredictionBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.disasterPredictionBuilding.getNextUpgradeCost();
-            colony.disasterPredictionBuilding.upgrade();
-        }
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
 
-        e.swallow(['mouseup','touchend','touchcancel'], function() {
-            userInterface.getChildAt(3).setFill('#0c0');
-        });
-    });
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(8).setFill('#0c0');
+    //     });
+    // });
 
-    goog.events.listen(userInterface.getChildAt(4), ['mousedown','touchstart'], function(e) {
-        userInterface.getChildAt(4).setFill('#00c');
+    // goog.events.listen(userInterface.getChildAt(9), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(9).setFill('#00c');
 
-        if(playerObj.resources >= colony.preventAsteroidBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.preventAsteroidBuilding.getNextUpgradeCost();
-            colony.preventAsteroidBuilding.upgrade();
-        }
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
 
-        e.swallow(['mouseup','touchend','touchcancel'], function() {
-            userInterface.getChildAt(4).setFill('#0c0');
-        });
-    });
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(9).setFill('#0c0');
+    //     });
+    // });
 
-    goog.events.listen(userInterface.getChildAt(5), ['mousedown','touchstart'], function(e) {
-        userInterface.getChildAt(5).setFill('#00c');
+    // goog.events.listen(userInterface.getChildAt(10), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(10).setFill('#00c');
 
-        if(playerObj.resources >= colony.preventAlienBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.preventAlienBuilding.getNextUpgradeCost();
-            colony.preventAlienBuilding.upgrade();
-        }
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
 
-        e.swallow(['mouseup','touchend','touchcancel'], function() {
-            userInterface.getChildAt(5).setFill('#0c0');
-        });
-    });
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(10).setFill('#0c0');
+    //     });
+    // });
 
-    goog.events.listen(userInterface.getChildAt(6), ['mousedown','touchstart'], function(e) {
-        userInterface.getChildAt(6).setFill('#00c');
+    // goog.events.listen(userInterface.getChildAt(11), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(11).setFill('#00c');
 
-        if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
-            playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
-            colony.preventStormBuilding.upgrade();
-        }
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
 
-        e.swallow(['mouseup','touchend','touchcancel'], function() {
-            userInterface.getChildAt(6).setFill('#0c0');
-        });
-    });
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(11).setFill('#0c0');
+    //     });
+    // });
+
+    // goog.events.listen(userInterface.getChildAt(12), ['mousedown','touchstart'], function(e) {
+    //     userInterface.getChildAt(12).setFill('#00c');
+
+    //     if(playerObj.resources >= colony.preventStormBuilding.getNextUpgradeCost()) {
+    //         playerObj.resources -= colony.preventStormBuilding.getNextUpgradeCost();
+    //         colony.preventStormBuilding.upgrade();
+    //     }
+
+    //     e.swallow(['mouseup','touchend','touchcancel'], function() {
+    //         userInterface.getChildAt(12).setFill('#0c0');
+    //     });
+    // });
 
 
     // set current scene active
