@@ -24,7 +24,7 @@ gamejambeta.start = function(){
     var director = new lime.Director(document.body,gameObj.width,gameObj.height),
         scene = new lime.Scene(),
         //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
-        colony = new Colony,
+        colony = new Colony(gameObj),
         userInterface = createUserInterface(gameObj),
         map = createMap(gameObj);
 
@@ -65,16 +65,22 @@ gamejambeta.start = function(){
         uiLayerObject: userInterface.getChildAt(8)
     });
     
+    colony.updateHealth(0, 10, userInterface.getChildAt(14));
+
     // set current scene active
     director.replaceScene(scene);
-
 }
 
 function addUiButtonEventListener(colony, uiButtonParams) {
     goog.events.listen(uiButtonParams.uiLayerObject, ['mousedown','touchstart'], function(e) {
         uiButtonParams.uiLayerObject.setFill('#00c');
 
-        if(colony.isPossibleUpgrade(uiButtonParams.buildingType)) {
+        if(colony.isPossibleUpgrade(uiButtonParams.buildingType) 
+            && uiButtonParams.updateType === "upgrade") {
+            colony.updateBuilding(uiButtonParams);
+        }
+        else if(colony.isPossibleDowngrade(uiButtonParams.buildingType)
+            && uiButtonParams.updateType === "downgrade") {
             colony.updateBuilding(uiButtonParams);
         }
 

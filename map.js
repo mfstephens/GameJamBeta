@@ -8,18 +8,40 @@ function createMap(gameObj) {
 
     var resourceBuilding = new lime.Sprite()
     	.setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
-    	.setFill("#3366FF")
+    	.setFill("img/buildingPlacement.png")
     	.setAnchorPoint(0, 0)
-    	.setPosition(gameObj.tile_size * 5, gameObj.tile_size * 5);
+    	.setPosition(gameObj.tile_size * 6, gameObj.tile_size * 8);
 
-    var defenseBuilding = new lime.Sprite()
-    	.setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
-    	.setFill("#0033CC")
-    	.setAnchorPoint(0, 0)
-    	.setPosition(gameObj.tile_size * 30, gameObj.tile_size * 30);
+    var buildingAlienDefense = new lime.Sprite()
+        .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
+        .setFill("img/buildingPlacement.png")
+        .setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size * 3, gameObj.tile_size * 26);
+
+    var buildingHealthBuff = new lime.Sprite()
+        .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
+        .setFill("img/buildingPlacement.png")
+        .setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size * 40, gameObj.tile_size * 15);
+
+    var buildingAsteroidDefense = new lime.Sprite()
+        .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
+        .setFill("img/buildingPlacement.png")
+        .setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size * 26, gameObj.tile_size * 20);
+
+    var buildingStormDefense = new lime.Sprite()
+        .setSize(gameObj.tile_size * 16, gameObj.tile_size * 16)
+        .setFill("img/buildingPlacement.png")
+        .setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size * 40, gameObj.tile_size * 25);
+
 
 	map.appendChild(resourceBuilding);
-	map.appendChild(defenseBuilding);
+	map.appendChild(buildingAlienDefense);
+    map.appendChild(buildingHealthBuff);
+    map.appendChild(buildingAsteroidDefense);
+    map.appendChild(buildingStormDefense);
 
 	return map;
 }
