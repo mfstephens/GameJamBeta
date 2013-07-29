@@ -28,8 +28,8 @@ gamejambeta.start = function(){
         userInterface = createUserInterface(gameObj),
         map = createMap(gameObj);
 
-    scene.appendChild(userInterface);
     scene.appendChild(map);
+    scene.appendChild(userInterface);
 
     director.makeMobileWebAppCapable();
 
@@ -40,60 +40,68 @@ gamejambeta.start = function(){
     addUiButtonEventListener(colony, {
         buildingType: "resource",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(0),
-        uiLayerObject: userInterface.getChildAt(1)
+        mapLayerObject: map.getChildAt(1),
+        uiLayerObject: userInterface.getChildAt(7),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "alien",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(1),
-        uiLayerObject: userInterface.getChildAt(2)
+        mapLayerObject: map.getChildAt(2),
+        uiLayerObject: userInterface.getChildAt(8),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "prediction",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(2),
-        uiLayerObject: userInterface.getChildAt(3)
+        mapLayerObject: map.getChildAt(3),
+        uiLayerObject: userInterface.getChildAt(9),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "health",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(3),
-        uiLayerObject: userInterface.getChildAt(4)
+        mapLayerObject: map.getChildAt(4),
+        uiLayerObject: userInterface.getChildAt(10),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "asteroid",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(4),
-        uiLayerObject: userInterface.getChildAt(5)
+        mapLayerObject: map.getChildAt(5),
+        uiLayerObject: userInterface.getChildAt(11),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "storm",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(5),
-        uiLayerObject: userInterface.getChildAt(6)
+        mapLayerObject: map.getChildAt(6),
+        uiLayerObject: userInterface.getChildAt(12),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "resource",
         updateType: "downgrade",
-        mapLayerObject: map.getChildAt(0),
-        uiLayerObject: userInterface.getChildAt(7)
+        mapLayerObject: map.getChildAt(1),
+        uiLayerObject: userInterface.getChildAt(7),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "alien",
         updateType: "downgrade",
-        mapLayerObject: map.getChildAt(1),
-        uiLayerObject: userInterface.getChildAt(8)
+        mapLayerObject: map.getChildAt(2),
+        uiLayerObject: userInterface.getChildAt(13),
+        uiResourcesDisplay: userInterface.getChildAt(21)
     });
     
-    colony.updateHealth(0, 10, userInterface.getChildAt(14));
+    colony.updateHealth(0, 10, userInterface.getChildAt(21));
 
     // set current scene active
     director.replaceScene(scene);
@@ -101,20 +109,23 @@ gamejambeta.start = function(){
 
 function addUiButtonEventListener(colony, uiButtonParams) {
     goog.events.listen(uiButtonParams.uiLayerObject, ['mousedown','touchstart'], function(e) {
-        uiButtonParams.uiLayerObject.setFill('#00c');
+
+        var resources = colony.getResources();
 
         if(colony.isPossibleUpgrade(uiButtonParams.buildingType) 
             && uiButtonParams.updateType === "upgrade") {
-            colony.updateBuilding(uiButtonParams);
+            resources = colony.updateBuilding(uiButtonParams);
         }
         else if(colony.isPossibleDowngrade(uiButtonParams.buildingType)
             && uiButtonParams.updateType === "downgrade") {
-            colony.updateBuilding(uiButtonParams);
+            resources = colony.updateBuilding(uiButtonParams);
         }
 
-        e.swallow(['mouseup','touchend','touchcancel'], function() {
-            uiButtonParams.uiLayerObject.setFill('#0c0');
-        });
+        uiButtonParams.uiResourcesDisplay.setText("Resources: " + resources);
+
+        // e.swallow(['mouseup','touchend','touchcancel'], function() {
+        //     uiButtonParams.uiLayerObject.setFill('#0c0');
+        // });
     });
 }
 
