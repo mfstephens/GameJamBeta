@@ -55,7 +55,7 @@ gamejambeta.start = function(){
             colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
         }
 
-        if(colony.updateHealth(0,0,userInterface.getChildAt(26))<=0){
+        if(colony.updateHealth(0,0,userInterface.getChildAt(20))<=0){
             var bitch = new lime.Scene();
             var fuckYou = new lime.Label()
                 .setText("HIGH SCORE?")
