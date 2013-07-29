@@ -11,8 +11,6 @@ goog.require('lime.Label');
 // entrypoint
 gamejambeta.start = function(){
 
-    var disasterTimes = [1500,2000,2500];
-
     var gameObj = {
         tile_size: 16,
         num_tiles_x: 80,
