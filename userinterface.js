@@ -285,11 +285,11 @@ function updateWarning(gameObj,uiWarningArea,naturalDisasterQueue,predictorLevel
 
     	var disaster = naturalDisasterQueue.peekItemFromQueue(i);
     	if(disaster.disasterType==='Asteroid'){
-    		warning.setFill('#c00');
+    		warning.setFill('img/uiDisasterQueueAsteroids.png');
     	}else if(disaster.disasterType==='Aliens'){
-    		warning.setFill('#0c0');
+    		warning.setFill('img/uiDisasterQueueAliens.png');
     	}else{
-    		warning.setFill('#00c');
+    		warning.setFill('img/uiDisasterQueueElectricStorm.png');
     	}
 
     	uiWarningArea.appendChild(warning);
