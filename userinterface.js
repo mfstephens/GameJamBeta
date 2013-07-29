@@ -6,13 +6,6 @@ function createUserInterface(gameObj) {
 	userInterface.setSize(gameObj.tile_size*gameObj.userInterfaceLayer_w,
 		gameObj.tile_size*gameObj.userInterfaceLayer_h);
 
-	// userInterface.appendChild(upgradeUiResourceBuildingButton);
-	// userInterface.appendChild(upgradeUiHealthBuildingButton);
-	// userInterface.appendChild(upgradeUiPredictorBuildingButton);
-	// userInterface.appendChild(upgradeUiAsteroidBuildingButton);
-	// userInterface.appendChild(upgradeUiAlienBuildingButton);
-	// userInterface.appendChild(upgradeUiStormBuildingButton);
-
 	var uiBackground = new lime.Sprite()
 		.setSize(gameObj.tile_size * gameObj.userInterfaceLayer_w,
 			gameObj.tile_size * gameObj.userInterfaceLayer_h)
@@ -154,6 +147,54 @@ function createUserInterface(gameObj) {
         .setPosition(gameObj.tile_size*72,
 			gameObj.tile_size*60);
 
+    var uiResourceBuildingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 12, gameObj.tile_size* 55);
+
+    var uiPredictorBuildingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 24, gameObj.tile_size* 55);
+
+    var uiHealthBuldingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 36, gameObj.tile_size* 55);
+
+    var uiAsteroidBuildingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 48, gameObj.tile_size* 55);
+
+    var uiAlienBuildingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 60, gameObj.tile_size* 55);
+
+    var uiStormBuildingLevel = new lime.Label()
+    	.setText("0")
+		.setFontSize(gameObj.tile_size * 3, gameObj.tile_size * 3)
+		.setFontFamily("courier")
+		.setFontColor("#FF3300")
+		.setAnchorPoint(0, 0)
+        .setPosition(gameObj.tile_size* 72, gameObj.tile_size* 55);
+
     var uiHealthBar = new lime.Sprite()
     	.setSize(gameObj.tile_size * 78,
     		gameObj.tile_size * 4)
@@ -169,10 +210,12 @@ function createUserInterface(gameObj) {
    		.setPosition(gameObj.tile_size * 2, gameObj.tile_size);
 
    	var uiResources = new lime.Label()
-   		.setText("Resources: 100")
-   		.setFontSize(gameObj.tile_size * 5, gameObj.tile_size * 1)
+   		.setText("Resources:100")
+   		.setFontFamily("courier")
+   		.setFontWeight("bold")
    		.setAnchorPoint(0, 0)
-   		.setPosition(gameObj.tile_size * 10, gameObj.tile_size * 5);
+   		.setFontSize(gameObj.tile_size * 3.4)
+   		.setPosition(gameObj.tile_size, gameObj.tile_size * 50);
 
 	userInterface.appendChild(uiBackground);
 	userInterface.appendChild(uiResourceBuildingButton);
@@ -193,6 +236,14 @@ function createUserInterface(gameObj) {
 	userInterface.appendChild(downgradeUiAsteroidBuildingButton);
 	userInterface.appendChild(downgradeUiAlienBuildingButton);
 	userInterface.appendChild(downgradeUiStormBuildingButton);
+	userInterface.appendChild(uiResourceBuildingLevel);
+	userInterface.appendChild(uiPredictorBuildingLevel);
+	userInterface.appendChild(uiHealthBuldingLevel);
+	userInterface.appendChild(uiAsteroidBuildingLevel);
+	userInterface.appendChild(uiAlienBuildingLevel);
+	userInterface.appendChild(uiStormBuildingLevel);
+
+
 	userInterface.appendChild(uiHealthBar);
 	userInterface.appendChild(uiHealth);
 	userInterface.appendChild(uiResources);
