@@ -23,10 +23,13 @@ gamejambeta.start = function(){
 
     var director = new lime.Director(document.body,gameObj.width,gameObj.height),
         scene = new lime.Scene(),
-        //naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
+        naturalDisasterQueue = new NaturalDisasterQueue(gameObj),
         colony = new Colony(gameObj),
         userInterface = createUserInterface(gameObj),
-        map = createMap(gameObj);
+        map = createMap(gameObj),
+        timeCounter = 0,
+        damageOverTime = 1,
+        eventTimer = 0;
 
     scene.appendChild(map);
     scene.appendChild(userInterface);
@@ -34,7 +37,20 @@ gamejambeta.start = function(){
     director.makeMobileWebAppCapable();
 
     lime.scheduleManager.schedule(function(dt) {
-        //gamejambeta.NaturalDisaster.scheduleShit(dt);
+        naturalDisasterQueue.append();
+        timeCounter += dt;
+        if(timeCounter > 1000){
+            timeCounter = 0;
+            damageOverTime += 0.1;
+            var res = colony.getResources();
+            colony.updateHealth(Math.floor(damageOverTime),0,userInterface.getChildAt(20));
+        }
+        eventTimer -= dt;
+        if(eventTimer<=0){
+            var disaster = naturalDisasterQueue.deque();
+            eventTimer = disaster.timer;
+            colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
+        }
     },this);
 
     addUiButtonEventListener(colony, {
