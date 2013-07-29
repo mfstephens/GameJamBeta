@@ -43,13 +43,13 @@ gamejambeta.start = function(){
             timeCounter = 0;
             damageOverTime += 0.1;
             var res = colony.getResources();
-            colony.updateHealth(Math.floor(damageOverTime),0,userInterface.getChildAt(20));
+            colony.updateHealth(Math.floor(damageOverTime),0,userInterface.getChildAt(26));
         }
         eventTimer -= dt;
         if(eventTimer<=0){
             var disaster = naturalDisasterQueue.deque();
             eventTimer = disaster.timer;
-            colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
+            colony.updateHealth(disaster.damage,0,userInterface.getChildAt(26));
         }
     },this);
 
