@@ -220,7 +220,8 @@ function createUserInterface(gameObj) {
 
    	var uiWarningArea = new lime.Layer();
 	uiWarningArea.setAnchorPoint(0,0);
-	uiWarningArea.setSize(gameObj.tile_size*8,gameObj.tile_size*24);
+	uiWarningArea.setSize(gameObj.tile_size*8,gameObj.tile_size*26);
+	uiWarningArea.setPosition(1,5);
 
 	/*00*/userInterface.appendChild(uiBackground);
 	/*01*/userInterface.appendChild(uiResourceBuildingButton);
@@ -253,11 +254,45 @@ function createUserInterface(gameObj) {
 	/*26*/userInterface.appendChild(uiHealth);
 	/*27*/userInterface.appendChild(uiResources);
 	/*28*/userInterface.appendChild(uiWarningArea);
+
+
+	//setSize(width,height)
+    //setPosition(left, top)
 		
 
 	return userInterface;
 }
 
 function updateWarning(gameObj,uiWarningArea,naturalDisasterQueue,predictorLevel) {
+	uiWarningArea.removeAllChildren();
 
+	var warningBackground = new lime.Sprite()
+    	.setSize(gameObj.tile_size * 8,
+    	gameObj.tile_size * 26)
+    	.setAnchorPoint(0, 0)
+    	.setPosition(0, 0)
+    	.setFill('#000');
+
+	uiWarningArea.appendChild(warningBackground);
+
+	for (var i = 0; i < predictorLevel; i++) {
+		var warning = new lime.Sprite()
+    		.setSize(gameObj.tile_size * 6,
+    			gameObj.tile_size * 4)
+    		.setAnchorPoint(0, 0)
+    		.setPosition(gameObj.tile_size, 
+    			gameObj.tile_size*(1+5*i));
+
+    	var disaster = naturalDisasterQueue.peekItemFromQueue(i);
+    	console.log('FUCKING WARNING NIGGA '+disaster.disasterType);
+    	if(disaster.disasterType==='Asteroid'){
+    		warning.setFill('#c00');
+    	}else if(disaster.disasterType==='Aliens'){
+    		warning.setFill('#0c0');
+    	}else{
+    		warning.setFill('#00c');
+    	}
+
+    	uiWarningArea.appendChild(warning);
+	};
 }

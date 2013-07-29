@@ -47,6 +47,7 @@ gamejambeta.start = function(){
         }
         eventTimer -= dt;
         if(eventTimer<=0){
+            updateWarning(gameObj,userInterface.getChildAt(28),naturalDisasterQueue,3)
             var disaster = naturalDisasterQueue.deque();
             eventTimer = disaster.timer;
             colony.updateHealth(disaster.damage,0,userInterface.getChildAt(26));
