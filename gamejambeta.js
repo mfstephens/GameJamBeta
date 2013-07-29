@@ -44,15 +44,15 @@ gamejambeta.start = function(){
             timeCounter = 0;
             damageOverTime += 0.1;
             var res = colony.getResources();
-            colony.updateHealth(Math.floor(damageOverTime),0,userInterface.getChildAt(26));
+            colony.updateHealth(Math.floor(damageOverTime),0,userInterface.getChildAt(20));
         }
         eventTimer -= dt;
         if(eventTimer<=0){
-            updateWarning(gameObj,userInterface.getChildAt(28),naturalDisasterQueue,
+            updateWarning(gameObj,userInterface.getChildAt(22),naturalDisasterQueue,
                 colony.getTotalVisibleItemsInDisasterQueue());
             var disaster = naturalDisasterQueue.deque();
             eventTimer = disaster.timer;
-            colony.updateHealth(disaster.damage,0,userInterface.getChildAt(26));
+            colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
         }
 
         if(colony.updateHealth(0,0,userInterface.getChildAt(26))<=0){
@@ -82,112 +82,112 @@ gamejambeta.start = function(){
         buildingType: "resource",
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(1),
-        uiLayerObject: userInterface.getChildAt(7),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(19)
-    });
-
-    addUiButtonEventListener(colony, {
-        buildingType: "alien",
-        updateType: "upgrade",
-        mapLayerObject: map.getChildAt(2),
-        uiLayerObject: userInterface.getChildAt(8),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(20)
+        uiLayerObject: userInterface.getChildAt(1),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(13)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "prediction",
         updateType: "upgrade",
-        mapLayerObject: map.getChildAt(3),
-        uiLayerObject: userInterface.getChildAt(9),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(21)
+        mapLayerObject: map.getChildAt(2),
+        uiLayerObject: userInterface.getChildAt(2),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(14)
     });
 
     addUiButtonEventListener(colony, {
-        buildingType: "health",
+        buildingType: "storm",
+        updateType: "upgrade",
+        mapLayerObject: map.getChildAt(3),
+        uiLayerObject: userInterface.getChildAt(3),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(15)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "alien",
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(4),
-        uiLayerObject: userInterface.getChildAt(10),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(22)
+        uiLayerObject: userInterface.getChildAt(4),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(16)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "asteroid",
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(5),
-        uiLayerObject: userInterface.getChildAt(11),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(23)
+        uiLayerObject: userInterface.getChildAt(5),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(17)
     });
 
     addUiButtonEventListener(colony, {
-        buildingType: "storm",
+        buildingType: "health",
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(6),
-        uiLayerObject: userInterface.getChildAt(12),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(24)
+        uiLayerObject: userInterface.getChildAt(6),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(18)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "resource",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(1),
-        uiLayerObject: userInterface.getChildAt(13),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(19)
-    });
-
-    addUiButtonEventListener(colony, {
-        buildingType: "alien",
-        updateType: "downgrade",
-        mapLayerObject: map.getChildAt(2),
-        uiLayerObject: userInterface.getChildAt(14),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(20)
+        uiLayerObject: userInterface.getChildAt(7),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(13)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "prediction",
         updateType: "downgrade",
-        mapLayerObject: map.getChildAt(3),
-        uiLayerObject: userInterface.getChildAt(15),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(21)
+        mapLayerObject: map.getChildAt(2),
+        uiLayerObject: userInterface.getChildAt(8),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(14)
     });
 
     addUiButtonEventListener(colony, {
-        buildingType: "health",
+        buildingType: "storm",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(3),
+        uiLayerObject: userInterface.getChildAt(9),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(15)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "alien",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(4),
-        uiLayerObject: userInterface.getChildAt(16),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(22)
+        uiLayerObject: userInterface.getChildAt(10),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(16)
     });
 
     addUiButtonEventListener(colony, {
         buildingType: "asteroid",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(5),
-        uiLayerObject: userInterface.getChildAt(17),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(23)
+        uiLayerObject: userInterface.getChildAt(11),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(17)
     });
 
     addUiButtonEventListener(colony, {
-        buildingType: "storm",
+        buildingType: "health",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(6),
-        uiLayerObject: userInterface.getChildAt(18),
-        uiResourcesDisplay: userInterface.getChildAt(27),
-        uiBuildingLevel: userInterface.getChildAt(24)
+        uiLayerObject: userInterface.getChildAt(12),
+        uiResourcesDisplay: userInterface.getChildAt(21),
+        uiBuildingLevel: userInterface.getChildAt(18)
     });
     
-    colony.updateHealth(0, 10, userInterface.getChildAt(26));
-    colony.initColony(userInterface.getChildAt(26), userInterface.getChildAt(27));
+    colony.updateHealth(0, 10, userInterface.getChildAt(20));
+    colony.initColony(userInterface.getChildAt(20), userInterface.getChildAt(21));
 
     // set current scene active
     director.replaceScene(scene);

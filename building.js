@@ -229,6 +229,9 @@ function PreventDamageBuilding() {
 	};
 
 	this.getDamageReductionFactor = function() {
+		if(currentLevel === 0) {
+			return 1;
+		}
 		return (1 / damageReductionFactor);
 	};
 }
