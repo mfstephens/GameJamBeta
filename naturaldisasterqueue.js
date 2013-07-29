@@ -13,10 +13,13 @@ function NaturalDisasterQueue(gameObj){
                 var type = queue.shift();
 
                 if(type===0){
+                        console.log('Asteroid');
                         return new Asteroid;
                 }else if(type===1){
+                        console.log('Aliens');
                         return new Aliens;
                 }else{
+                        console.log('Storm');
                         return new Storm;
                 }
         };

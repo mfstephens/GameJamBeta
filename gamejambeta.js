@@ -37,6 +37,7 @@ gamejambeta.start = function(){
     director.makeMobileWebAppCapable();
 
     lime.scheduleManager.schedule(function(dt) {
+        naturalDisasterQueue.append();
         timeCounter += dt;
         if(timeCounter > 1000){
             timeCounter = 0;
@@ -46,7 +47,7 @@ gamejambeta.start = function(){
         }
         eventTimer -= dt;
         if(eventTimer<=0){
-            var disaster = NaturalDisasterQueue.deque;
+            var disaster = naturalDisasterQueue.deque();
             eventTimer = disaster.timer;
             colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
         }
