@@ -209,8 +209,6 @@ function addUiButtonEventListener(colony, uiButtonParams) {
 
         var resources = colony.getResources();
 
-        console.log(colony.getDamageReductionFactors());
-        console.log("queue: " + colony.getTotalVisibleItemsInDisasterQueue());
 
         uiButtonParams.uiResourcesDisplay.setText("Resources:" + resources);
 

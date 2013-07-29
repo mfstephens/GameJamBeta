@@ -1,17 +1,17 @@
 function Asteroid() {
-	this.timer = 1500;
-	this.damage = 10;
+	this.timer = 5000;
+	this.damage = 5;
 	this.disasterType = 'Asteroid';
 }
 
 function Aliens() {
-	this.timer = 2000;
-	this.damage = 15;
+	this.timer = 7000;
+	this.damage = 10;
 	this.disasterType = 'Aliens';
 }
 
 function Storm() {
-	this.timer = 2500;
-	this.damage = 20;
+	this.timer = 10000;
+	this.damage = 15;
 	this.disasterType = 'Storm';
 }

@@ -26,7 +26,6 @@ function Colony(gameObj) {
 			goog.events.removeAll(updateParams.uiLayerObject);
 			lime.scheduleManager.callAfter(function(dt) {
 				buildings[index].upgrade();
-				console.log(buildings[index].getCurrentLevel());
 				updateParams.mapLayerObject.setFill(spritePath);
 				addUiButtonEventListener(that, updateParams);
 			}, this, 5000);
@@ -35,14 +34,12 @@ function Colony(gameObj) {
 		}
 		else if(updateParams.updateType === "downgrade") {
 			// Set building image
-            console.log("downgrade");
 			playerObj.resources += buildings[index].getNextDowngradePayout();
 			updateParams.mapLayerObject.setFill("img/buildingPreBuilt.png");
 
 			goog.events.removeAll(updateParams.uiLayerObject);
 			lime.scheduleManager.callAfter(function(dt) {
 				buildings[index].downgrade();
-				console.log(buildings[index].getCurrentLevel());
 				updateParams.mapLayerObject.setFill(spritePath);
 			}, this, 5000);
 
@@ -170,7 +167,7 @@ function Colony(gameObj) {
         else {
             uiLayerObject.setSize(gameObj.tile_size * newWidth, gameObj.tile_size * 2);
         }
-        console.log(playerObj.health);
+        console.log("health: " + playerObj.health);
         return playerObj.health;
     };
 
@@ -181,13 +178,12 @@ function Colony(gameObj) {
     this.initColony = function(uiHealth, uiResources) {
         lime.scheduleManager.scheduleWithDelay(function(dt) {
            that.updateHealth(0, buildings[2].getHealthPayout(), uiHealth); 
-           console.log("heal: " + buildings[2].getHealthPayout());
-        }, this, 1000);
+        }, this, 1500);
 
         lime.scheduleManager.scheduleWithDelay(function(dt) {
             playerObj.resources += buildings[0].getResourcePayout();
             uiResources.setText("Resources:" + playerObj.resources);
-        }, this, 1000);
+        }, this, 2000);
     };
 
     this.getDamageReductionFactors = function() {

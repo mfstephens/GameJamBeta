@@ -159,12 +159,12 @@ function HealthBuffBuilding() {
 
 	this.upgrade = function() {
 		upgradeLevelAndCost();
-		staticHealthPayoutPerInterval++;
+		staticHealthPayoutPerInterval += 2;
 	};
 
 	this.downgrade = function() {
 		downgradeLevelAndCost();
-		staticHealthPayoutPerInterval--;
+		staticHealthPayoutPerInterval -= 2;
 	};
 
 	this.getCurrentLevel = function() {
