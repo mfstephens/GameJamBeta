@@ -57,7 +57,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(1),
         uiLayerObject: userInterface.getChildAt(7),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(19)
     });
 
     addUiButtonEventListener(colony, {
@@ -65,7 +66,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(2),
         uiLayerObject: userInterface.getChildAt(8),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(20)
     });
 
     addUiButtonEventListener(colony, {
@@ -73,7 +75,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(3),
         uiLayerObject: userInterface.getChildAt(9),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
@@ -81,7 +84,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(4),
         uiLayerObject: userInterface.getChildAt(10),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(22)
     });
 
     addUiButtonEventListener(colony, {
@@ -89,7 +93,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(5),
         uiLayerObject: userInterface.getChildAt(11),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(23)
     });
 
     addUiButtonEventListener(colony, {
@@ -97,7 +102,8 @@ gamejambeta.start = function(){
         updateType: "upgrade",
         mapLayerObject: map.getChildAt(6),
         uiLayerObject: userInterface.getChildAt(12),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(24)
     });
 
     addUiButtonEventListener(colony, {
@@ -105,7 +111,8 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(1),
         uiLayerObject: userInterface.getChildAt(13),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(19)
     });
 
     addUiButtonEventListener(colony, {
@@ -113,7 +120,8 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(2),
         uiLayerObject: userInterface.getChildAt(14),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(20)
     });
 
     addUiButtonEventListener(colony, {
@@ -121,7 +129,8 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(3),
         uiLayerObject: userInterface.getChildAt(15),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(21)
     });
 
     addUiButtonEventListener(colony, {
@@ -129,7 +138,8 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(4),
         uiLayerObject: userInterface.getChildAt(16),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(22)
     });
 
     addUiButtonEventListener(colony, {
@@ -137,7 +147,8 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(5),
         uiLayerObject: userInterface.getChildAt(17),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(23)
     });
 
     addUiButtonEventListener(colony, {
@@ -145,10 +156,11 @@ gamejambeta.start = function(){
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(6),
         uiLayerObject: userInterface.getChildAt(18),
-        uiResourcesDisplay: userInterface.getChildAt(21)
+        uiResourcesDisplay: userInterface.getChildAt(27),
+        uiBuildingLevel: userInterface.getChildAt(24)
     });
     
-    colony.updateHealth(0, 10, userInterface.getChildAt(21));
+    colony.updateHealth(0, 10, userInterface.getChildAt(26));
 
     // set current scene active
     director.replaceScene(scene);
@@ -157,18 +169,20 @@ gamejambeta.start = function(){
 function addUiButtonEventListener(colony, uiButtonParams) {
     goog.events.listen(uiButtonParams.uiLayerObject, ['mousedown','touchstart'], function(e) {
 
-        var resources = colony.getResources();
-
         if(colony.isPossibleUpgrade(uiButtonParams.buildingType) 
             && uiButtonParams.updateType === "upgrade") {
-            resources = colony.updateBuilding(uiButtonParams);
+            var newBuildingLevel = colony.updateBuilding(uiButtonParams);
+            uiButtonParams.uiBuildingLevel.setText(newBuildingLevel);
         }
         else if(colony.isPossibleDowngrade(uiButtonParams.buildingType)
             && uiButtonParams.updateType === "downgrade") {
-            resources = colony.updateBuilding(uiButtonParams);
+            var newBuildingLevel = colony.updateBuilding(uiButtonParams);
+            uiButtonParams.uiBuildingLevel.setText(newBuildingLevel);
         }
 
-        uiButtonParams.uiResourcesDisplay.setText("Resources: " + resources);
+        var resources = colony.getResources();
+
+        uiButtonParams.uiResourcesDisplay.setText("Resources:" + resources);
 
         // e.swallow(['mouseup','touchend','touchcancel'], function() {
         //     uiButtonParams.uiLayerObject.setFill('#0c0');

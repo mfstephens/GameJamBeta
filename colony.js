@@ -30,6 +30,8 @@ function Colony(gameObj) {
 				updateParams.mapLayerObject.setFill(spritePath);
 				addUiButtonEventListener(that, updateParams);
 			}, this, 5000);
+
+            return buildings[index].getCurrentLevel() + 1;
 		}
 		else if(updateParams.updateType === "downgrade") {
 			// Set building image
@@ -43,6 +45,8 @@ function Colony(gameObj) {
 				console.log(buildings[index].getCurrentLevel());
 				updateParams.mapLayerObject.setFill(spritePath);
 			}, this, 5000);
+
+            return buildings[index].getCurrentLevel() - 1;
 		}
 	};
 
@@ -131,27 +135,26 @@ function Colony(gameObj) {
     this.updateBuilding = function(updateParams) {
     	switch(updateParams.buildingType) {
     		case "resource":
-    			applyBuildingUpdate(updateParams, 0, "img/resourceBuilding.png");
+    			return applyBuildingUpdate(updateParams, 0, "img/resourceBuilding.png");
     			break;
             case "prediction":
-                applyBuildingUpdate(updateParams, 1, "img/buildingSweeper.png")
+                return applyBuildingUpdate(updateParams, 1, "img/buildingSweeper.png");
                 break;
             case "health":
-                applyBuildingUpdate(updateParams, 2, "img/buildingHealthBuff.png");
+                return applyBuildingUpdate(updateParams, 2, "img/buildingHealthBuff.png");
                 break;
     		case "alien":
-    			applyBuildingUpdate(updateParams, 3, "img/buildingAlienDefense.png");
+    			return applyBuildingUpdate(updateParams, 3, "img/buildingAlienDefense.png");
     			break;
             case "asteroid":
-                applyBuildingUpdate(updateParams, 4, "img/buildingAsteroidsDefense.png");
+                return applyBuildingUpdate(updateParams, 4, "img/buildingAsteroidsDefense.png");
                 break;
     		case "storm":
-                applyBuildingUpdate(updateParams, 5, "img/buildingElectricStormDefense.png");
+                return applyBuildingUpdate(updateParams, 5, "img/buildingElectricStormDefense.png");
                 break;
     		default:
     			break;
     	}
-        return playerObj.resources;
     };
 
     this.updateHealth = function(damage, heal, uiLayerObject) {
