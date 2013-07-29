@@ -271,7 +271,7 @@ function updateWarning(gameObj,uiWarningArea,naturalDisasterQueue,predictorLevel
     	gameObj.tile_size * 26)
     	.setAnchorPoint(0, 0)
     	.setPosition(0, 0)
-    	.setFill('#000');
+    	.setFill('img/uiDisasterQueue.png');
 
 	uiWarningArea.appendChild(warningBackground);
 
