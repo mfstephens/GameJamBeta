@@ -4,9 +4,9 @@ function Colony(gameObj) {
 		new ResourceBuilding,
 		new DisasterPredictionBuilding,
 		new HealthBuffBuilding,
-		new PreventDamageBuilding,
-		new PreventDamageBuilding,
-		new PreventDamageBuilding
+		new PreventDamageBuilding,    // alien
+		new PreventDamageBuilding,    // asteroid
+		new PreventDamageBuilding     // storm
 	];
 
 	var playerObj = {
@@ -175,5 +175,30 @@ function Colony(gameObj) {
 
     this.getResources = function() {
         return playerObj.resources;
-    }
+    };
+
+    this.initColony = function(uiHealth, uiResources) {
+        lime.scheduleManager.scheduleWithDelay(function(dt) {
+           that.updateHealth(0, buildings[2].getHealthPayout(), uiHealth); 
+           console.log("heal: " + buildings[2].getHealthPayout());
+        }, this, 1000);
+
+        lime.scheduleManager.scheduleWithDelay(function(dt) {
+            playerObj.resources += buildings[0].getResourcePayout();
+            uiResources.setText("Resources:" + playerObj.resources);
+        }, this, 1000);
+    };
+
+    this.getDamageReductionFactors = function() {
+        var factors = {
+            alienReductionFactor: buildings[3].getDamageReductionFactor(),
+            asteroidReductionFactor: buildings[4].getDamageReductionFactor(),
+            stormReductionFactor: buildings[5].getDamageReductionFactor(),
+        };
+        return factors;
+    };
+
+    this.getTotalVisibleItemsInDisasterQueue = function() {
+        return buildings[1].getTotalVisibleItemsInDisasterQueue();
+    };
 }
