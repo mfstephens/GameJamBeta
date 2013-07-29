@@ -284,7 +284,6 @@ function updateWarning(gameObj,uiWarningArea,naturalDisasterQueue,predictorLevel
     			gameObj.tile_size*(1+5*i));
 
     	var disaster = naturalDisasterQueue.peekItemFromQueue(i);
-    	console.log('FUCKING WARNING NIGGA '+disaster.disasterType);
     	if(disaster.disasterType==='Asteroid'){
     		warning.setFill('#c00');
     	}else if(disaster.disasterType==='Aliens'){
