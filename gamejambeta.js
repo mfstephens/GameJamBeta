@@ -31,6 +31,7 @@ gamejambeta.start = function(){
         damageOverTime = 1,
         eventTimer = 0;
 
+
     scene.appendChild(map);
     scene.appendChild(userInterface);
 
@@ -163,6 +164,7 @@ gamejambeta.start = function(){
     });
     
     colony.updateHealth(0, 10, userInterface.getChildAt(26));
+    colony.initColony(userInterface.getChildAt(26), userInterface.getChildAt(27));
 
     // set current scene active
     director.replaceScene(scene);
@@ -183,6 +185,9 @@ function addUiButtonEventListener(colony, uiButtonParams) {
         }
 
         var resources = colony.getResources();
+
+        console.log(colony.getDamageReductionFactors());
+        console.log("queue: " + colony.getTotalVisibleItemsInDisasterQueue());
 
         uiButtonParams.uiResourcesDisplay.setText("Resources:" + resources);
 
