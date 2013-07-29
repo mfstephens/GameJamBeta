@@ -187,11 +187,11 @@ function Colony(gameObj) {
     };
 
     this.getDamageReductionFactors = function() {
-        var factors = {
-            alienReductionFactor: buildings[3].getDamageReductionFactor(),
-            asteroidReductionFactor: buildings[4].getDamageReductionFactor(),
-            stormReductionFactor: buildings[5].getDamageReductionFactor(),
-        };
+        var factors = [
+            buildings[3].getDamageReductionFactor(),
+            buildings[4].getDamageReductionFactor(),
+            buildings[5].getDamageReductionFactor(),
+        ];
         return factors;
     };
 

@@ -52,6 +52,11 @@ gamejambeta.start = function(){
                 colony.getTotalVisibleItemsInDisasterQueue());
             var disaster = naturalDisasterQueue.deque();
             eventTimer = disaster.timer;
+            var damageFactors = colony.getDamageReductionFactors();
+            colony.updateHealth(
+                Math.floor(disaster.damage*damageFactors[disaster.enumer]),
+                0,
+                userInterface.getChildAt(20));
             colony.updateHealth(disaster.damage,0,userInterface.getChildAt(20));
         }
 
