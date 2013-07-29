@@ -221,7 +221,7 @@ function createUserInterface(gameObj) {
    	var uiWarningArea = new lime.Layer();
 	uiWarningArea.setAnchorPoint(0,0);
 	uiWarningArea.setSize(gameObj.tile_size*8,gameObj.tile_size*26);
-	uiWarningArea.setPosition(1,5);
+	uiWarningArea.setPosition(gameObj.tile_size*1,gameObj.tile_size*5);
 
 	/*00*/userInterface.appendChild(uiBackground);
 	/*01*/userInterface.appendChild(uiResourceBuildingButton);
