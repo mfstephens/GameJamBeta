@@ -214,8 +214,8 @@ function createUserInterface(gameObj) {
    		.setFontFamily("courier")
    		.setFontWeight("bold")
    		.setAnchorPoint(0, 0)
-   		.setFontSize(gameObj.tile_size * 4)
-   		.setPosition(gameObj.tile_size * 48, gameObj.tile_size * 3.5);
+   		.setFontSize(gameObj.tile_size * 3.4)
+   		.setPosition(gameObj.tile_size, gameObj.tile_size * 50);
 
 	userInterface.appendChild(uiBackground);
 	userInterface.appendChild(uiResourceBuildingButton);
