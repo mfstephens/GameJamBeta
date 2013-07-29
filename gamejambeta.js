@@ -54,6 +54,28 @@ gamejambeta.start = function(){
             eventTimer = disaster.timer;
             colony.updateHealth(disaster.damage,0,userInterface.getChildAt(26));
         }
+
+        if(colony.updateHealth(0,0,userInterface.getChildAt(26))<=0){
+            var bitch = new lime.Scene();
+            var fuckYou = new lime.Label()
+                .setText("HIGH SCORE?")
+                .setFontSize(gameObj.tile_size * 10, gameObj.tile_size * 10)
+                .setFontFamily("courier")
+                .setFontColor("#F30")
+                .setAnchorPoint(0.5, 0.5)
+                .setPosition(gameObj.tile_size* 40, gameObj.tile_size* 27);
+            var youFuck = new lime.Label()
+                .setText("FUCK YOU")
+                .setFontSize(gameObj.tile_size * 10, gameObj.tile_size * 10)
+                .setFontFamily("courier")
+                .setFontColor("#F30")
+                .setAnchorPoint(0.5, 0.5)
+                .setPosition(gameObj.tile_size* 40, gameObj.tile_size* 37);
+            bitch.appendChild(fuckYou);
+            bitch.appendChild(youFuck);
+            scene = bitch;
+            director.replaceScene(scene);
+        }
     },this);
 
     addUiButtonEventListener(colony, {

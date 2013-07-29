@@ -171,6 +171,7 @@ function Colony(gameObj) {
             uiLayerObject.setSize(gameObj.tile_size * newWidth, gameObj.tile_size * 2);
         }
         console.log(playerObj.health);
+        return playerObj.health;
     };
 
     this.getResources = function() {
