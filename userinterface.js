@@ -1,4 +1,5 @@
 goog.require('lime.Layer');
+goog.require('lime.Sprite');
 
 function createUserInterface(gameObj) {
 	var userInterface = new lime.Layer();
@@ -217,37 +218,80 @@ function createUserInterface(gameObj) {
    		.setFontSize(gameObj.tile_size * 3.4)
    		.setPosition(gameObj.tile_size, gameObj.tile_size * 50);
 
-	userInterface.appendChild(uiBackground);
-	userInterface.appendChild(uiResourceBuildingButton);
-	userInterface.appendChild(uiPredictorBuildingButton);
-	userInterface.appendChild(uiHealthBuldingButton);
-	userInterface.appendChild(uiAsteroidBuildingButton);
-	userInterface.appendChild(uiAlienBuildingButton);
-	userInterface.appendChild(uiStormBuildingButton);
-	userInterface.appendChild(upgradeUiResourceBuildingButton);
-	userInterface.appendChild(upgradeUiHealthBuildingButton);
-	userInterface.appendChild(upgradeUiPredictorBuildingButton);
-	userInterface.appendChild(upgradeUiAsteroidBuildingButton);
-	userInterface.appendChild(upgradeUiAlienBuildingButton);
-	userInterface.appendChild(upgradeUiStormBuildingButton);
-	userInterface.appendChild(downgradeUiResourceBuildingButton);
-	userInterface.appendChild(downgradeUiHealthBuildingButton);
-	userInterface.appendChild(downgradeUiPredictorBuildingButton);
-	userInterface.appendChild(downgradeUiAsteroidBuildingButton);
-	userInterface.appendChild(downgradeUiAlienBuildingButton);
-	userInterface.appendChild(downgradeUiStormBuildingButton);
-	userInterface.appendChild(uiResourceBuildingLevel);
-	userInterface.appendChild(uiPredictorBuildingLevel);
-	userInterface.appendChild(uiHealthBuldingLevel);
-	userInterface.appendChild(uiAsteroidBuildingLevel);
-	userInterface.appendChild(uiAlienBuildingLevel);
-	userInterface.appendChild(uiStormBuildingLevel);
+   	var uiWarningArea = new lime.Layer();
+	uiWarningArea.setAnchorPoint(0,0);
+	uiWarningArea.setSize(gameObj.tile_size*8,gameObj.tile_size*26);
+	uiWarningArea.setPosition(1,5);
+
+	/*00*/userInterface.appendChild(uiBackground);
+	/*01*/userInterface.appendChild(uiResourceBuildingButton);
+	/*02*/userInterface.appendChild(uiPredictorBuildingButton);
+	/*03*/userInterface.appendChild(uiHealthBuldingButton);
+	/*04*/userInterface.appendChild(uiAsteroidBuildingButton);
+	/*05*/userInterface.appendChild(uiAlienBuildingButton);
+	/*06*/userInterface.appendChild(uiStormBuildingButton);
+	/*07*/userInterface.appendChild(upgradeUiResourceBuildingButton);
+	/*08*/userInterface.appendChild(upgradeUiHealthBuildingButton);
+	/*09*/userInterface.appendChild(upgradeUiPredictorBuildingButton);
+	/*10*/userInterface.appendChild(upgradeUiAsteroidBuildingButton);
+	/*11*/userInterface.appendChild(upgradeUiAlienBuildingButton);
+	/*12*/userInterface.appendChild(upgradeUiStormBuildingButton);
+	/*13*/userInterface.appendChild(downgradeUiResourceBuildingButton);
+	/*14*/userInterface.appendChild(downgradeUiHealthBuildingButton);
+	/*15*/userInterface.appendChild(downgradeUiPredictorBuildingButton);
+	/*16*/userInterface.appendChild(downgradeUiAsteroidBuildingButton);
+	/*17*/userInterface.appendChild(downgradeUiAlienBuildingButton);
+	/*18*/userInterface.appendChild(downgradeUiStormBuildingButton);
+	/*19*/userInterface.appendChild(uiResourceBuildingLevel);
+	/*20*/userInterface.appendChild(uiPredictorBuildingLevel);
+	/*21*/userInterface.appendChild(uiHealthBuldingLevel);
+	/*22*/userInterface.appendChild(uiAsteroidBuildingLevel);
+	/*23*/userInterface.appendChild(uiAlienBuildingLevel);
+	/*24*/userInterface.appendChild(uiStormBuildingLevel);
 
 
-	userInterface.appendChild(uiHealthBar);
-	userInterface.appendChild(uiHealth);
-	userInterface.appendChild(uiResources);
+	/*25*/userInterface.appendChild(uiHealthBar);
+	/*26*/userInterface.appendChild(uiHealth);
+	/*27*/userInterface.appendChild(uiResources);
+	/*28*/userInterface.appendChild(uiWarningArea);
+
+
+	//setSize(width,height)
+    //setPosition(left, top)
 		
 
 	return userInterface;
+}
+
+function updateWarning(gameObj,uiWarningArea,naturalDisasterQueue,predictorLevel) {
+	uiWarningArea.removeAllChildren();
+
+	var warningBackground = new lime.Sprite()
+    	.setSize(gameObj.tile_size * 8,
+    	gameObj.tile_size * 26)
+    	.setAnchorPoint(0, 0)
+    	.setPosition(0, 0)
+    	.setFill('#000');
+
+	uiWarningArea.appendChild(warningBackground);
+
+	for (var i = 0; i < predictorLevel; i++) {
+		var warning = new lime.Sprite()
+    		.setSize(gameObj.tile_size * 6,
+    			gameObj.tile_size * 4)
+    		.setAnchorPoint(0, 0)
+    		.setPosition(gameObj.tile_size, 
+    			gameObj.tile_size*(1+5*i));
+
+    	var disaster = naturalDisasterQueue.peekItemFromQueue(i);
+    	if(disaster.disasterType==='Asteroid'){
+    		warning.setFill('img/uiDisasterQueueAsteroids.png');
+    	}else if(disaster.disasterType==='Aliens'){
+    		warning.setFill('img/uiDisasterQueueAliens.png');
+    	}else{
+    		warning.setFill('img/uiDisasterQueueElectricStorm.png');
+    	}
+
+    	uiWarningArea.appendChild(warning);
+	};
 }
