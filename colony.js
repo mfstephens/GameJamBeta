@@ -33,6 +33,7 @@ function Colony(gameObj) {
 		}
 		else if(updateParams.updateType === "downgrade") {
 			// Set building image
+            console.log("downgrade");
 			playerObj.resources += buildings[index].getNextDowngradePayout();
 			updateParams.mapLayerObject.setFill("img/buildingPreBuilt.png");
 

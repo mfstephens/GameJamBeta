@@ -89,7 +89,7 @@ gamejambeta.start = function(){
         buildingType: "resource",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(1),
-        uiLayerObject: userInterface.getChildAt(7),
+        uiLayerObject: userInterface.getChildAt(13),
         uiResourcesDisplay: userInterface.getChildAt(21)
     });
 
@@ -97,7 +97,39 @@ gamejambeta.start = function(){
         buildingType: "alien",
         updateType: "downgrade",
         mapLayerObject: map.getChildAt(2),
-        uiLayerObject: userInterface.getChildAt(13),
+        uiLayerObject: userInterface.getChildAt(14),
+        uiResourcesDisplay: userInterface.getChildAt(21)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "prediction",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(3),
+        uiLayerObject: userInterface.getChildAt(15),
+        uiResourcesDisplay: userInterface.getChildAt(21)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "health",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(4),
+        uiLayerObject: userInterface.getChildAt(16),
+        uiResourcesDisplay: userInterface.getChildAt(21)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "asteroid",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(5),
+        uiLayerObject: userInterface.getChildAt(17),
+        uiResourcesDisplay: userInterface.getChildAt(21)
+    });
+
+    addUiButtonEventListener(colony, {
+        buildingType: "storm",
+        updateType: "downgrade",
+        mapLayerObject: map.getChildAt(6),
+        uiLayerObject: userInterface.getChildAt(18),
         uiResourcesDisplay: userInterface.getChildAt(21)
     });
     
